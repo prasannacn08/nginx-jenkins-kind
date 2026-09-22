@@ -5,7 +5,7 @@ pipeline {
     environment {
 
         DOCKER_IMAGE = '95prasanna/nginx-app'
-        IMAGE_TAG = 'latest'
+        IMAGE_TAG = 'latest_1'
 
         DEPLOYMENT_NAME = 'nginx-deployment'
         CONTAINER_NAME = 'nginx'

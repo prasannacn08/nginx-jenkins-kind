@@ -4,7 +4,7 @@ pipeline {
 
     environment {
 
-        DOCKER_IMAGE = 'YOUR_DOCKERHUB_USERNAME/nginx-app'
+        DOCKER_IMAGE = '95prasanna/nginx-app'
         IMAGE_TAG = 'latest'
 
         DEPLOYMENT_NAME = 'nginx-deployment'
@@ -19,7 +19,7 @@ pipeline {
 
                 git branch: 'main',
                     credentialsId: 'github-creds',
-                    url: 'https://github.com/YOUR_USERNAME/nginx-jenkins-kind.git'
+                    url: 'https://github.com/prasannacn08/nginx-jenkins-kind.git'
             }
         }
 

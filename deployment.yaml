@@ -20,7 +20,7 @@ spec:
       containers:
         - name: nginx
 
-          image: 95prasanna/nginx-app:latest_1
+          image: 95prasanna/nginx-app:latest
 
           ports:
             - containerPort: 80

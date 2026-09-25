@@ -126,6 +126,11 @@ pipeline {
                     echo "===== SERVICE ====="
 
                     kubectl get svc
+
+                    echo  "====INGRESS======="
+
+                    kubectl get ingress
+                    
                 '''
             }
         }

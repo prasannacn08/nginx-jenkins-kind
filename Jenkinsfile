@@ -96,6 +96,8 @@ pipeline {
 
                     kubectl apply -f service.yaml
 
+                    kubectl apply -f ingress.yaml
+
                     kubectl set image \
                     deployment/${DEPLOYMENT_NAME} \
                     ${CONTAINER_NAME}=${DOCKER_IMAGE}:${IMAGE_TAG}

@@ -5,8 +5,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: localhost
-      http:
+    - http:
         paths:
           - path: /
             pathType: Prefix
@@ -15,4 +14,3 @@ spec:
                 name: nginx-service
                 port:
                   number: 80
-

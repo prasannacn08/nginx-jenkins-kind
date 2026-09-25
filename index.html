@@ -1,18 +1,305 @@
 <!DOCTYPE html>
-<html>
 
+<html lang="en">
 <head>
-    <title>Nginx Kubernetes Application</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+```
+<title>DevOps Kubernetes Application</title>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+        background: #f4f7fb;
+        color: #1f2937;
+    }
+
+    header {
+        background: #111827;
+        color: white;
+        padding: 20px 8%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    header h1 {
+        font-size: 24px;
+    }
+
+    nav a {
+        color: white;
+        text-decoration: none;
+        margin-left: 25px;
+        font-size: 15px;
+    }
+
+    .hero {
+        padding: 80px 8%;
+        background: white;
+        text-align: center;
+    }
+
+    .hero h2 {
+        font-size: 42px;
+        margin-bottom: 20px;
+    }
+
+    .hero h2 span {
+        color: #2563eb;
+    }
+
+    .hero p {
+        font-size: 18px;
+        color: #6b7280;
+        max-width: 700px;
+        margin: auto;
+        line-height: 1.7;
+    }
+
+    .status {
+        display: inline-block;
+        margin-top: 25px;
+        padding: 10px 20px;
+        background: #dcfce7;
+        color: #166534;
+        border-radius: 25px;
+        font-weight: bold;
+    }
+
+    .container {
+        width: 84%;
+        margin: 50px auto;
+    }
+
+    .container h2 {
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 30px;
+    }
+
+    .cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+    }
+
+    .card {
+        background: white;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        text-align: center;
+    }
+
+    .card h3 {
+        margin-bottom: 15px;
+        color: #2563eb;
+    }
+
+    .card p {
+        color: #6b7280;
+        line-height: 1.6;
+    }
+
+    .architecture {
+        background: #111827;
+        color: white;
+        padding: 50px 8%;
+        text-align: center;
+    }
+
+    .architecture h2 {
+        margin-bottom: 25px;
+    }
+
+    .flow {
+        font-size: 18px;
+        line-height: 2.5;
+        font-weight: bold;
+    }
+
+    .footer {
+        background: #020617;
+        color: #9ca3af;
+        text-align: center;
+        padding: 25px;
+        font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+        .cards {
+            grid-template-columns: 1fr;
+        }
+
+        .hero h2 {
+            font-size: 32px;
+        }
+
+        header {
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        nav a {
+            margin: 0 8px;
+        }
+    }
+</style>
+```
+
 </head>
 
 <body>
 
-    <h1>Welcome to Updated Nginx Application</h1>
+```
+<header>
+    <h1>DevOps Application</h1>
 
-    <h2>Jenkins + Docker Hub + Kind Kubernetes</h2>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#technology">Technology</a>
+        <a href="#architecture">Architecture</a>
+    </nav>
+</header>
 
-    <p>Application deployed successfully Once More.</p>
+
+<section class="hero" id="home">
+
+    <h2>Welcome to <span>DevOps Kubernetes</span></h2>
+
+    <p>
+        This application is automatically built, containerized,
+        pushed to Docker Hub, and deployed to a Kubernetes cluster
+        using Jenkins CI/CD.
+    </p>
+
+    <div class="status">
+        ● Application Running Successfully
+    </div>
+
+</section>
+
+
+<section class="container" id="technology">
+
+    <h2>Technology Stack</h2>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>GitHub</h3>
+            <p>
+                Source code is maintained in GitHub.
+                Jenkins receives a webhook whenever new code is pushed.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Jenkins</h3>
+            <p>
+                Jenkins performs checkout, testing, Docker image
+                creation, tagging and deployment.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Docker</h3>
+            <p>
+                The application is packaged as a Docker image
+                and pushed to Docker Hub.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Kubernetes</h3>
+            <p>
+                Kubernetes manages application Pods and provides
+                self-healing and rolling deployment capabilities.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Nginx</h3>
+            <p>
+                Nginx serves this web application from inside
+                the Kubernetes Pods.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>CI/CD</h3>
+            <p>
+                Every new Jenkins build creates a new Docker image
+                using the Jenkins build number.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="architecture" id="architecture">
+
+    <h2>Deployment Architecture</h2>
+
+    <div class="flow">
+
+        GitHub
+        <br>
+        ↓
+        <br>
+        Jenkins
+        <br>
+        ↓
+        <br>
+        Docker Build
+        <br>
+        ↓
+        <br>
+        Docker Hub
+        <br>
+        ↓
+        <br>
+        Kubernetes Deployment
+        <br>
+        ↓
+        <br>
+        Nginx Pods
+        <br>
+        ↓
+        <br>
+        Kubernetes Service
+        <br>
+        ↓
+        <br>
+        Ingress / Load Balancer
+        <br>
+        ↓
+        <br>
+        Browser
+
+    </div>
+
+</section>
+
+
+<footer class="footer">
+
+    <p>
+        DevOps Kubernetes Project | Jenkins CI/CD | Docker | Kubernetes | Nginx
+    </p>
+
+</footer>
+```
 
 </body>
-
 </html>

@@ -256,7 +256,7 @@ pipeline {
                     -o jsonpath='{.spec.template.spec.containers[0].image}'
 
                     echo ""
-                '''
+                '''    
             }
         }
     }

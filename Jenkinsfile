@@ -92,12 +92,16 @@ pipeline {
             steps {
 
                 sh '''
-                    kubectl apply -f deployment.yaml
-
-                    kubectl apply -f service.yaml
-
-                    kubectl apply -f ingress.yaml
-
+                    kubectl apply -f k8s/namespace.yaml
+                    kubectl apply -f k8s/configmap.yaml
+                    kubectl apply -f k8s/secret.yaml
+                    kubectl apply -f k8s/pv.yaml
+                    kubectl apply -f k8s/pvc.yaml
+                    kubectl apply -f k8s/deployment.yaml
+                    kubectl apply -f k8s/service.yaml
+                    kubectl apply -f k8s/hpa.yaml
+                    kubectl apply -f k8s/vpa.yaml
+                    kubectl apply -f k8s/ingress.yaml
                     kubectl set image \
                     deployment/${DEPLOYMENT_NAME} \
                     ${CONTAINER_NAME}=${DOCKER_IMAGE}:${IMAGE_TAG}

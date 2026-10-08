@@ -98,9 +98,6 @@ spec:
             timeoutSeconds: 2
             failureThreshold: 3
 
-          securityContext:
-            allowPrivilegeEscalation: false
-
       # PVC attached to the Pod
       volumes:
         - name: app-storage

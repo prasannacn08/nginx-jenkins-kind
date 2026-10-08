@@ -25,21 +25,9 @@ spec:
         app: nginx-production
 
     spec:
-
-      affinity:
-        podAntiAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-            - weight: 100
-              podAffinityTerm:
-                topologyKey: kubernetes.io/hostname
-                labelSelector:
-                  matchLabels:
-                    app: nginx-production
-
       containers:
         - name: nginx
           image: 95prasanna/nginx-app:latest
-
           ports:
             - name: http
               containerPort: 80

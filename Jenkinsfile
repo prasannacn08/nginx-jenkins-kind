@@ -47,7 +47,6 @@ pipeline {
                     test -f k8s/deployment.yaml
                     test -f k8s/service.yaml
                     test -f k8s/hpa.yaml
-                    test -f k8s/vpa.yaml
                     test -f k8s/ingress.yaml
 
                     echo "All required files are present."
@@ -158,11 +157,7 @@ pipeline {
                     kubectl apply \
                     -f k8s/hpa.yaml
 
-                    echo "===== Applying VPA ====="
-
-                    kubectl apply \
-                    -f k8s/vpa.yaml
-
+                
                     echo "===== Applying Ingress ====="
 
                     kubectl apply \
@@ -223,13 +218,6 @@ pipeline {
                     echo "===== HPA ====="
 
                     kubectl get hpa \
-                    -n production
-
-
-                    echo ""
-                    echo "===== VPA ====="
-
-                    kubectl get vpa \
                     -n production
 
 

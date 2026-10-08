@@ -157,7 +157,6 @@ pipeline {
                     kubectl apply \
                     -f k8s/hpa.yaml
 
-                
                     echo "===== Applying Ingress ====="
 
                     kubectl apply \

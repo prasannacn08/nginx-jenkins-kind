@@ -26,7 +26,6 @@ spec:
 
     spec:
 
-      # Prefer spreading replicas across the two worker nodes
       affinity:
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
@@ -39,7 +38,6 @@ spec:
 
       containers:
         - name: nginx
-
           image: 95prasanna/nginx-app:latest
 
           ports:
@@ -47,7 +45,6 @@ spec:
               containerPort: 80
               protocol: TCP
 
-          # Resource requests and limits
           resources:
             requests:
               cpu: "100m"
@@ -56,7 +53,6 @@ spec:
               cpu: "500m"
               memory: "256Mi"
 
-          # Get application configuration from ConfigMap
           env:
             - name: APP_NAME
               valueFrom:
@@ -76,7 +72,6 @@ spec:
                   name: app-config
                   key: LOG_LEVEL
 
-            # Get sensitive values from Secret
             - name: DB_USERNAME
               valueFrom:
                 secretKeyRef:
@@ -89,7 +84,12 @@ spec:
                   name: app-secret
                   key: DB_PASSWORD
 
-          # Readiness = should Service send traffic?
+          # Persistent storage
+          volumeMounts:
+            - name: app-storage
+              mountPath: /usr/share/nginx/html/data
+
+          # Readiness probe
           readinessProbe:
             httpGet:
               path: /
@@ -100,7 +100,7 @@ spec:
             failureThreshold: 3
             successThreshold: 1
 
-          # Liveness = is container still healthy?
+          # Liveness probe
           livenessProbe:
             httpGet:
               path: /
@@ -113,3 +113,8 @@ spec:
           securityContext:
             allowPrivilegeEscalation: false
 
+      # PVC attached to the Pod
+      volumes:
+        - name: app-storage
+          persistentVolumeClaim:
+            claimName: app-pvc

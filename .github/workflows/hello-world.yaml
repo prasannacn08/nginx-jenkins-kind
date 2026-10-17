@@ -1,29 +1,41 @@
+
 name: hello-world
+
 on:
   push:
-      branches: ["main"]
-  pull_request: 
-      branches: ["main"]
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
 jobs:
-  first_hello_world_job:
+  first-hello-world-job:
     runs-on: ubuntu-latest
+
     steps:
-      - name: checkout code
-        uses: actions/checkout@v3
-      - name: Print mesage
-        run: echo "this is hello from testing"
-Run-pytest:
-  runs_on: ubuntu-latest
-  steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-    - name: Setup python
-      uses: actions/setup-python@v3
-      with:
-        python-version: 3.9
-    - name: Install dependencies
-      run:
-        python -m pip install --upgrade pip
-        pip install pytest
-    - name: Run testcases
-      run: pytest
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Print message
+        run: echo "This is hello from testing"
+
+  run-pytest:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install pytest
+
+      - name: Run test cases
+        run: python -m pytest

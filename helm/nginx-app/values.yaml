@@ -1,0 +1,24 @@
+replicaCount: 3
+
+image:
+  repository: 95prasanna/nginx-app
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  name: nginx-service
+  port: 80
+
+hpa:
+  enabled: true
+  minReplicas: 3
+  maxReplicas: 5
+  cpuUtilization: 70
+
+persistence:
+  enabled: true
+  existingClaim: app-pvc
+
+ingress:
+  enabled: true
+  className: nginx

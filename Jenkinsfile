@@ -108,68 +108,20 @@ pipeline {
         }
 
 
-        stage('Kubernetes Deploy') {
+        stage('Deploy with Helm') {
+    steps {
+        sh '''
+            export KUBECONFIG=/var/lib/jenkins/.kube/config
 
-            steps {
+            helm upgrade --install nginx-app ./helm/nginx-app \
+              --namespace production \
+              --create-namespace \
+              --set image.repository=95prasanna/nginx-app \
+              --set image.tag=${BUILD_NUMBER}
 
-                sh '''
-                    echo "===== Kubernetes Cluster ====="
-
-                    kubectl get nodes
-
-                    echo "===== Creating Namespace ====="
-
-                    kubectl apply \
-                    -f k8s/namespace.yaml
-
-                    echo "===== Applying ConfigMap ====="
-
-                    kubectl apply \
-                    -f k8s/configmap.yaml
-
-                    echo "===== Applying Secret ====="
-
-                    kubectl apply \
-                    -f k8s/secret.yaml
-
-                    echo "===== Applying Persistent Volume ====="
-
-                    kubectl apply \
-                    -f k8s/pv.yaml
-
-                    echo "===== Applying Persistent Volume Claim ====="
-
-                    kubectl apply \
-                    -f k8s/pvc.yaml
-
-                    echo "===== Applying Deployment ====="
-
-                    kubectl apply \
-                    -f k8s/deployment.yaml
-
-                    echo "===== Applying Service ====="
-
-                    kubectl apply \
-                    -f k8s/service.yaml
-
-                    echo "===== Applying HPA ====="
-
-                    kubectl apply \
-                    -f k8s/hpa.yaml
-
-                    echo "===== Applying Ingress ====="
-
-                    kubectl apply \
-                    -f k8s/ingress.yaml
-
-                    echo "===== Updating Docker Image ====="
-
-                    kubectl -n production set image \
-                    deployment/${DEPLOYMENT_NAME} \
-                    ${CONTAINER_NAME}=${DOCKER_IMAGE}:${IMAGE_TAG}
-                '''
-            }
-        }
+        '''
+    }
+}
 
 
         stage('Deployment Verification') {
